@@ -14,7 +14,7 @@ class TaskManager:
         save_tasks(tasks)
         print(f"Task added: {title}")
     
-    def list_task(self):
+    def list_tasks(self):
         tasks = load_tasks()
 
         if not tasks:
@@ -22,7 +22,7 @@ class TaskManager:
             return
         
         for task in tasks:
-            status = "Done" if task["completed"] else "Not Done"
+            status = "✔" if task["completed"] else "✗"
             print(f"{task['id']} - [{status}] {task['title']}")
 
     def mark_done(self, task_id):
