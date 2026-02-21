@@ -6,10 +6,6 @@ a new task, the delete button and the done button to change the status of a task
 
 Il faut avoir python d'installé.
 
-## Lib utilisé à installer
-
-(Il est conseillé d'utiliser un docker ou env pour pouvoir executer)
-
 ### Pour créer un env
 
 ``` bash
@@ -27,4 +23,8 @@ python3 src/tasknest/main.py
 OU
 ```bash
 alias tasknest="source LE_CHEMIN_DU_DOSSIER/venv/bin/activate && tasknest"
+```
+PUIS
+```bash
+tasknest
 ```
