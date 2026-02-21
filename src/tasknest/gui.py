@@ -36,6 +36,9 @@ class TaskApp:
         self.done_button = tk.Button(root, text="Done", command=self.mark_done)
         self.done_button.pack()
 
+        self.undone_button = tk.Button(root, text="Undone", command=self.mark_undone)
+        self.undone_button.pack()
+
         self.delete_button = tk.Button(root, text="Delete", command=self.delete_task)
         self.delete_button.pack()
 
@@ -79,6 +82,17 @@ class TaskApp:
         index = selection[0]
         task_id = self.tasks[index]["id"]
         self.manager.mark_done(task_id)
+        self.refresh_tasks()
+
+    def mark_undone(self):
+        selection = self.listbox.curselection()
+        if not selection:
+            messagebox.showwarning("Warning", "Select a task")
+            return
+
+        index = selection[0]
+        task_id = self.tasks[index]["id"]
+        self.manager.mark_undone(task_id)
         self.refresh_tasks()
 
     def delete_task(self):
