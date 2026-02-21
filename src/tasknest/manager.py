@@ -38,6 +38,19 @@ class TaskManager:
         
         print("Task not found.")
 
+
+    def mark_undone(self, task_id):
+        tasks = load_tasks()
+
+        for task in tasks:
+            if (task['id'] == task_id):
+                task['completed'] = False
+                save_tasks(tasks)
+                print("Task uncompleted.")
+                return
+        
+        print("Task not found.")
+
     def delete_task(self, task_id):
         tasks = load_tasks()
         tasks = [task for task in tasks if (task['id'] != task_id)]
