@@ -9,19 +9,25 @@ class TaskApp:
         self.root = root
         self.root.title("Task Manager")
 
-        # Zone d'entrée
         self.entry = tk.Entry(root, width=40)
         self.entry.pack(pady=5)
 
         self.add_button = tk.Button(root, text="Add", command=self.add_task)
         self.add_button.pack()
 
-        # Liste des tâches
-        self.listbox = tk.Listbox(root, width=50, selectmode=tk.SINGLE)
-        self.listbox.config(exportselection=False)
-        self.listbox.pack(pady=10)
+        self.list_frame = tk.Frame(root)
+        self.list_frame.pack(pady=10)
 
-        # Boutons actions
+        self.listbox = tk.Listbox(self.list_frame, width=50, height=10, selectmode=tk.SINGLE)
+        self.listbox.config(exportselection=False)
+        self.listbox.pack(side=tk.LEFT, fill=tk.BOTH)
+
+        self.scrollbar = tk.Scrollbar(self.list_frame)
+        self.scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+
+        self.listbox.config(yscrollcommand=self.scrollbar.set)
+        self.scrollbar.config(command=self.listbox.yview)
+
         self.done_button = tk.Button(root, text="Done", command=self.mark_done)
         self.done_button.pack()
 
@@ -34,9 +40,14 @@ class TaskApp:
         self.listbox.delete(0, tk.END)
         self.tasks = self.manager.get_all_tasks()
 
-        for task in self.tasks:
+        for index, task in enumerate(self.tasks):
             status = "✔" if task["completed"] else "✗"
             self.listbox.insert(tk.END, f"{status} {task['title']}")
+        
+            if task["completed"]:
+                self.listbox.itemconfig(index, fg="gray")
+            else:
+                self.listbox.itemconfig(index, fg="black")
 
     def add_task(self):
         title = self.entry.get()
