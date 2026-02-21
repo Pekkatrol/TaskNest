@@ -9,11 +9,16 @@ class TaskApp:
         self.root = root
         self.root.title("Task Nest")
 
+        self.toggle = 0
+
         self.entry = tk.Entry(root, width=40)
         self.entry.pack(pady=5)
 
         self.add_button = tk.Button(root, text="Add", command=self.add_task)
         self.add_button.pack()
+
+        self.show_button = tk.Button(root, text="Show completed tasks", command=self.change_toggle)
+        self.show_button.pack()
 
         self.list_frame = tk.Frame(root)
         self.list_frame.pack(pady=10)
@@ -38,16 +43,25 @@ class TaskApp:
 
     def refresh_tasks(self):
         self.listbox.delete(0, tk.END)
-        self.tasks = self.manager.get_all_tasks()
+
+        all_tasks = self.manager.get_all_tasks()
+
+        if self.toggle == 1:
+            self.tasks = [t for t in all_tasks if not t["completed"]]
+        else:
+            self.tasks = all_tasks
 
         for index, task in enumerate(self.tasks):
             status = "✔" if task["completed"] else "✗"
             self.listbox.insert(tk.END, f"{status} {task['title']}")
-        
             if task["completed"]:
                 self.listbox.itemconfig(index, fg="gray")
             else:
                 self.listbox.itemconfig(index, fg="black")
+
+    def change_toggle(self):
+        self.toggle = 0 if self.toggle == 1 else 1
+        self.refresh_tasks()
 
     def add_task(self):
         title = self.entry.get()
