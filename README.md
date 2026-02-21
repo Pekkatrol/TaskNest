@@ -19,6 +19,7 @@ python3 src/tasknest/main.py
 ```
 OU
 ```bash
+pip install -e
 alias tasknest="source LE_CHEMIN_DU_DOSSIER/venv/bin/activate && tasknest"
 ```
 PUIS
