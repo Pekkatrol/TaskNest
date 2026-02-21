@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-from task.manager import TaskManager
+from tasknest.manager import TaskManager
 
 class TaskApp:
 

@@ -1,5 +1,5 @@
-from task.storage import load_tasks, save_tasks
-import uuid
+from tasknest.storage import load_tasks, save_tasks
+
 
 class TaskManager:
 

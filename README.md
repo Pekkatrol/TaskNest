@@ -22,8 +22,9 @@ source venv/bin/activate
 ### Il existe 4 commandes:
 Add pour ajouter une task, list pour afficher les tasks, done pour changer le status d'une task, delete pour supprimer une task.
 ```bash
-python3 main.py add [task_title]
-python3 main.py list
-python main.py done [task_id]
-python main.py delete [task_id]
+python3 src/tasknest/main.py
+```
+OU
+```bash
+alias tasknest="source LE_CHEMIN_DU_DOSSIER/venv/bin/activate && tasknest"
 ```
