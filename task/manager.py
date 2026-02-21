@@ -1,10 +1,11 @@
 from task.storage import load_tasks, save_tasks
+import uuid
 
 class TaskManager:
 
     def add_task(self, title):
         tasks = load_tasks()
-        task_id = len(tasks) + 1
+        task_id = max([t["id"] for t in tasks], default=0) + 1
 
         tasks.append({
             "id": task_id,
@@ -43,3 +44,6 @@ class TaskManager:
 
         save_tasks(tasks)
         print("Task deleted.")
+
+    def get_all_tasks(self):
+        return load_tasks()
