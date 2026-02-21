@@ -15,3 +15,14 @@ Il faut avoir python d'installé.
 python3 -m venv venv
 source venv/bin/activate
 ```
+
+## Pour executer
+
+### Il existe 4 commandes:
+Add pour ajouter une task, list pour afficher les tasks, done pour changer le status d'une task, delete pour supprimer une task.
+```bash
+python3 main.py add [task_title]
+python3 main.py list
+python main.py done [task_id]
+python main.py delete [task_id]
+```
