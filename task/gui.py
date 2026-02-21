@@ -7,7 +7,7 @@ class TaskApp:
     def __init__(self, root):
         self.manager = TaskManager()
         self.root = root
-        self.root.title("Task Manager")
+        self.root.title("Task Nest")
 
         self.entry = tk.Entry(root, width=40)
         self.entry.pack(pady=5)
