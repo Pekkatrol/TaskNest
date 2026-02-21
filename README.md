@@ -1,5 +1,6 @@
 # TaskNest
-Task in json
+Task Nest is an task manager. When you execute the command you can enter the graphic interface. You have 3 differents buttons: add, to add
+a new task, the delete button and the done button to change the status of a task.
 
 # Minimum requis
 
