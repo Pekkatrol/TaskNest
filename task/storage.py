@@ -6,9 +6,12 @@ DATA_FILE = "data/tasks.json"
 def load_tasks():
     if not os.path.exists(DATA_FILE):
         return []
-    
-    with open(DATA_FILE, "r") as f:
-        return json.load(f)
+
+    try:
+        with open(DATA_FILE, "r") as f:
+            return json.load(f)
+    except json.JSONDecodeError:
+        return []
     
 
 def save_tasks(tasks):
