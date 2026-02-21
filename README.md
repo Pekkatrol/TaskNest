@@ -14,9 +14,6 @@ source venv/bin/activate
 ```
 
 ## Pour executer
-
-### Il existe 4 commandes:
-Add pour ajouter une task, list pour afficher les tasks, done pour changer le status d'une task, delete pour supprimer une task.
 ```bash
 python3 src/tasknest/main.py
 ```
