@@ -14,36 +14,44 @@ class TaskApp:
         self.manager = TaskManager()
         self.root = root
         self.root.title("Task Nest")
+    
+        self.toggle = 0
 
+        title_label = tk.Label(root, text="TaskNest", font=("Helvetica", 16, "bold"))
+        title_label.pack(pady=10)
+
+
+        input_frame = tk.Frame(root)
+        input_frame.pack(pady=5)
+
+        self.entry = tk.Entry(input_frame, width=35)
+        self.entry.pack(side=tk.LEFT, padx=5)
 
         self.priority_var = tk.StringVar(value="low")
 
         priority_menu = tk.OptionMenu(
-            self.root,
+            input_frame,
             self.priority_var,
             "low",
             "medium",
             "high"
         )
-        priority_menu.pack()
-    
-        self.toggle = 0
+        priority_menu.config(width=8)
+        priority_menu.pack(side=tk.LEFT, padx=5)
 
-        self.entry = tk.Entry(root, width=40)
-        self.entry.pack(pady=5)
-
-        self.add_button = tk.Button(root, text="Add", command=self.add_task)
-        self.add_button.pack()
-
-        self.show_button = tk.Button(root, text="Show completed tasks", command=self.change_toggle)
-        self.show_button.pack()
+        self.add_button = tk.Button(input_frame, text="Add", width=8, command=self.add_task)
+        self.add_button.pack(side=tk.LEFT)
 
         self.list_frame = tk.Frame(root)
         self.list_frame.pack(pady=10)
 
-        self.listbox = tk.Listbox(self.list_frame, width=50, height=10, selectmode=tk.SINGLE)
-        self.listbox.config(exportselection=False)
-        self.listbox.pack(side=tk.LEFT, fill=tk.BOTH)
+        self.listbox = tk.Listbox(
+            self.list_frame,
+            width=50,
+            height=12,
+            selectmode=tk.SINGLE
+        )
+        self.listbox.pack(side=tk.LEFT)
 
         self.scrollbar = tk.Scrollbar(self.list_frame)
         self.scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
@@ -51,14 +59,20 @@ class TaskApp:
         self.listbox.config(yscrollcommand=self.scrollbar.set)
         self.scrollbar.config(command=self.listbox.yview)
 
-        self.done_button = tk.Button(root, text="Done", command=self.mark_done)
-        self.done_button.pack()
+        action_frame = tk.Frame(root)
+        action_frame.pack(pady=10)
 
-        self.undone_button = tk.Button(root, text="Undone", command=self.mark_undone)
-        self.undone_button.pack()
+        self.done_button = tk.Button(action_frame, text="Done", width=10, command=self.mark_done)
+        self.done_button.pack(side=tk.LEFT, padx=5)
 
-        self.delete_button = tk.Button(root, text="Delete", command=self.delete_task)
-        self.delete_button.pack()
+        self.undone_button = tk.Button(action_frame, text="Undone", width=10, command=self.mark_undone)
+        self.undone_button.pack(side=tk.LEFT, padx=5)
+
+        self.delete_button = tk.Button(action_frame, text="Delete", width=10, command=self.delete_task)
+        self.delete_button.pack(side=tk.LEFT, padx=5)
+
+        self.show_button = tk.Button(root, text="Hide completed", command=self.change_toggle)
+        self.show_button.pack(pady=5)
 
         self.refresh_tasks()
 
