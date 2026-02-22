@@ -3,14 +3,15 @@ from tasknest.storage import load_tasks, save_tasks
 
 class TaskManager:
 
-    def add_task(self, title):
+    def add_task(self, title, priority):
         tasks = load_tasks()
         task_id = max([t["id"] for t in tasks], default=0) + 1
 
         tasks.append({
             "id": task_id,
             "title": title,
-            "completed": False
+            "completed": False,
+            "priority": priority
         })
         save_tasks(tasks)
         print(f"Task added: {title}")
