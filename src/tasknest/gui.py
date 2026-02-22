@@ -2,6 +2,12 @@ import tkinter as tk
 from tkinter import messagebox
 from tasknest.manager import TaskManager
 
+PRIORITY_ICONS = {
+    "high": "[HIGH]",
+    "medium": "[MED]",
+    "low": "[LOW]"
+}
+
 class TaskApp:
 
     def __init__(self, root):
@@ -68,7 +74,7 @@ class TaskApp:
 
         for index, task in enumerate(self.tasks):
             status = "✔" if task["completed"] else "✗"
-            self.listbox.insert(tk.END, f"{status} {task['title']}")
+            self.listbox.insert(tk.END, f"{status}     {task['title']}     {PRIORITY_ICONS[task["priority"]]}")
             if task["completed"]:
                 self.listbox.itemconfig(index, fg="gray")
             else:
