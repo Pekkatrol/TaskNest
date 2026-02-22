@@ -1,10 +1,10 @@
-from tasknest.gui import TaskApp
-import tkinter as tk
+from tasknest.gui import TaskNestApp
+
 
 def main():
-    root = tk.Tk()
-    app = TaskApp(root)
-    root.mainloop()
+    app = TaskNestApp()
+    app.mainloop()
+
 
 if __name__ == "__main__":
     main()
