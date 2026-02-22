@@ -9,6 +9,18 @@ class TaskApp:
         self.root = root
         self.root.title("Task Nest")
 
+
+        self.priority_var = tk.StringVar(value="low")
+
+        priority_menu = tk.OptionMenu(
+            self.root,
+            self.priority_var,
+            "low",
+            "medium",
+            "high"
+        )
+        priority_menu.pack()
+    
         self.toggle = 0
 
         self.entry = tk.Entry(root, width=40)
@@ -67,9 +79,11 @@ class TaskApp:
         self.refresh_tasks()
 
     def add_task(self):
+        priority = self.priority_var.get()
+
         title = self.entry.get()
         if title:
-            self.manager.add_task(title)
+            self.manager.add_task(title, priority)
             self.entry.delete(0, tk.END)
             self.refresh_tasks()
 
